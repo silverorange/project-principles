@@ -7,7 +7,7 @@ A project is freestanding when **all components necessary for the operation and 
 ## Benefits
 
 - ensures each developer has a consistent development environment
-- prevents potential collisions between environments during development
+- ensures each developer is free from any external impediments by removing shared resources
 - allows developers to share the entire state of their changes in a copyable form for others to build on or test
 
 ## Approach
