@@ -2,7 +2,7 @@
 
 ## Description
 
-A project is freestanding when <strong>all components necessary for the operation and development of the project are provided by the project itself</strong>. A freestanding project doesn’t use resources that are shared with others or interact with external services that must be configured outside the project.
+A project is freestanding when **all components necessary for the operation and development of the project are provided by the project itself**. A freestanding project doesn’t use resources that are shared with others or interact with external services that must be configured outside the project.
 
 ## Benefits
 
@@ -28,6 +28,7 @@ Examples of virtualization or emulation includes things like:
 One of the necessary components of the system, an SMTP server, was not contained within the project. This introduced friction and inconsistency to the development process.
 
 The architecture of the project looked like this:
+
 - a database for storing the state of the system
 - a client and server to allow users to interact with the system
 - a job daemon for processing asynchronous jobs that may occur in the normal operation of the system (generating reports or sending any email required for the system to function)
@@ -45,7 +46,7 @@ block-beta
 
 In order for any mail-related features to be developed, improved, or tested, <strong>an external mail server needed to be set up and development environments needed extra configuration to use it</strong>.
 
-When we used a shared resource, like mail.silverorange.com, we risked impeding the work of others. We could send unwanted mail to other developers or worse, to real customers! 😱 
+When we used a shared resource, like mail.silverorange.com, we risked impeding the work of others. We could send unwanted mail to other developers or worse, to real customers! 😱
 
 #### Fix
 
