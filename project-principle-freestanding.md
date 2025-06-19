@@ -2,24 +2,17 @@
 
 ## Description
 
-A project is freestanding when all components necessary for the operation and development of the project are provided by the project itself. A freestanding project doesn’t use resources that are shared with others or interact with external services that must be configured outside the project.
+A project is freestanding when <strong>all components necessary for the operation and development of the project are provided by the project itself</strong>. A freestanding project doesn’t use resources that are shared with others or interact with external services that must be configured outside the project.
 
 ## Benefits
 
-A freestanding project ensures each developer has a consistent development environment. A developer is free to experiment without the worry of impeding the progress of others.
-
-A freestanding projects allows developers to share the entire state of their changes in a copyable form for others to build on or test.
-
-## Violations
-
-Having to manually configure a project before it can be successfuly run may point to a violation of the Freestanding principle. It may indicate that all components necessary for the operation and development of the project are not provided by the project.
-
-Having project specific tooling live outside
-TODO: Having to use tools outside the project - sync-to-live example.
+- ensures each developer has a consistent development environment
+- prevents potential collisions between environments during development
+- allows developers to share the entire state of their changes in a copyable form for others to build on or test
 
 ## Approach
 
-Virtualization or emulation should be used to provide all necessary components for the development and operation of a project. It may be necessary to build our own simulated component when the component we wish to simulate does not provide an off the shelf container.
+Virtualization or emulation should be used to provide all necessary components for the development and operation of a project. It may be necessary to build our own simulated component when the component we wish to simulate does not provide an off-the-shelf container.
 
 Examples of virtualization or emulation includes things like:
 
@@ -30,7 +23,14 @@ Examples of virtualization or emulation includes things like:
 
 ### SMTP for starmaker-rebuild
 
-The architecture of the `starmaker-rebuild` project looked like the following. There is a database for storing the state of the system along with a client and server to allow users to interact with the system. Finally there is a job daemon for processing asynchronous jobs that may occur in the normal operation of the system. Examples of jobs are things like generating reports or sending any email required for the system to function.
+#### Violation
+
+One of the necessary components of the system, an SMTP server, was not contained within the project. This introduced friction and inconsistency to the development process.
+
+The architecture of the project looked like this:
+- a database for storing the state of the system
+- a client and server to allow users to interact with the system
+- a job daemon for processing asynchronous jobs that may occur in the normal operation of the system (generating reports or sending any email required for the system to function)
 
 ```mermaid
 block-beta
@@ -43,13 +43,15 @@ block-beta
   style mail stroke:#f66,stroke-width:2px,stroke-dasharray: 5 5
 ```
 
-One of the neccesary components of the system, an SMTP server, was not contained within the project. In order for any mail related features to be developed, improved, or tested an external mail server needed to be setup and our development environment needed to be configured to use it.
+In order for any mail-related features to be developed, improved, or tested, <strong>an external mail server needed to be set up and development environments needed extra configuration to use it</strong>.
 
-We were violating the Freestanding principle by relying on a resource that developers needed to setup and configure themselves. This introduced friction and inconsistency into to the development process. Any mail related development relied on things that were no longer fully captured in our project.
+When we used a shared resource, like mail.silverorange.com, we risked impeding the work of others. We could send unwanted mail to other developers or worse, to real customers! 😱 
 
-Finally since we would end up using a shared resource, like mail.silverorange.com, we ran the risk of impeding the work of others. We may up sending un-wanted to mail to other developers or, even worse, to confused, real customers! 😱
+#### Fix
 
-We want to achieve an architecture like the following where the mail server is contained within the project and isolated from the outside world.
+[Contain SMTP server within the project using virtualization and emulation](https://github.com/silverorange/starmaker-rebuild/pull/1107).
+
+[Docker](https://hub.docker.com/r/axllent/mailpit) provides virtualization while [mailpit](https://mailpit.axllent.org) emulates an SMTP server.
 
 ```mermaid
 block-beta
@@ -60,10 +62,6 @@ block-beta
   s2d<[" "]>(y):2 d2j<[" "]>(y):1 j2m<[" "]>(down):1
   database:3 mail["mail server"]:1
 ```
-
-We were able to [achive](https://github.com/silverorange/starmaker-rebuild/pull/1107) the above architecture by using virtualization and emulation. The [mailpit](https://mailpit.axllent.org) project provides us with the emulation of a SMTP server while [Docker](https://hub.docker.com/r/axllent/mailpit) provides the virtualization.
-
-We no longer need to worry about impeding the work of others nor do we have to do any extra configuration. We have captured more of the development environment in code and removed the Freestanding violation from out project.
 
 Case Studies
 
