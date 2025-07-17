@@ -5,6 +5,7 @@ export default withMermaid({
   // your existing vitepress config...
   title: 'silverorange Project Principles',
   description: 'Principles to follow for joyful software development!',
+  base: '/project-principles/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [{ text: 'Home', link: '/' }],
