@@ -23,7 +23,7 @@ export default withMermaid({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' },
+      { icon: 'github', link: 'https://github.com/silverorange/project-principles' },
     ],
   },
   // optionally, you can pass MermaidConfig
