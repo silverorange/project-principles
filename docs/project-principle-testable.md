@@ -19,7 +19,7 @@ All business logic code should be located in the functional core of a project. T
 
 The application entry point will then contain the imperative shell. This code will have state and side effects. This code will glue parts of the functional core together to achieve the desired outcome of the application. This code should have little to no branching. This code should end up being a high level description of how the desired outcome of the application will be reached.
 
-![Functional Core, Imperative Shell](/functional-core-imperative-shell.svg)
+![Functional Core, Imperative Shell](/images/functional-core-imperative-shell.svg)
 
 ## Links
 
