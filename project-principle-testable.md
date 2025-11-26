@@ -2,7 +2,7 @@
 
 ## Description
 
-A project is testable when **it is trivial to write small isolated tests for the business logic**. A testable project contains many small isolated tests that each test a single component of the system. Writing these isolated tests is simple and the scope of each test is small and obvious.
+A project is testable when **it is designed in such a way that it is trivial to write small isolated tests for the business logic**. A testable project contains many small isolated tests that each test a single component of the system. Writing these isolated tests is simple and the scope of each test is small and obvious.
 
 ## Benefits
 
