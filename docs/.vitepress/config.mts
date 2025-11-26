@@ -18,6 +18,10 @@ export default withMermaid({
             text: 'Freestanding Principle',
             link: '/project-principle-freestanding',
           },
+          {
+            text: 'Testable Principle',
+            link: '/project-principle-testable',
+          },
         ],
       },
     ],

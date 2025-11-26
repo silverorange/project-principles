@@ -10,4 +10,7 @@ hero:
     - theme: brand
       text: Freestanding Principle
       link: /project-principle-freestanding
+    - theme: brand
+      text: Testable Principle
+      link: /project-principle-testable
 ---
