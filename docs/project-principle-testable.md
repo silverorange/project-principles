@@ -15,7 +15,7 @@ A project is testable when **it is designed in such a way that it is trivial to 
 
 Using the [Functional Core, Imperative Shell](https://functional-architecture.org/functional_core_imperative_shell/) pattern to design or refactor your code will result in a testable project.
 
-All business logic code should be located in the functional core of a project. This code will be pure and isloated which makes it very easy to test. This code should contain all branching and data transformations.
+All business logic code should be located in the functional core of a project. This code will be pure and isolated which makes it very easy to test. This code should contain all branching and data transformations.
 
 The application entry point will then contain the imperative shell. This code will have state and side effects. This code will glue parts of the functional core together to achieve the desired outcome of the application. This code should have little to no branching. This code should end up being a high level description of how the desired outcome of the application will be reached.
 
